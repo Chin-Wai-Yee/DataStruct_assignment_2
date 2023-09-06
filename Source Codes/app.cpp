@@ -27,6 +27,8 @@ int main() {
 	// 	system("pause");
 	// }
 
+	root->printLevelNodes();
+
 	return 0;
 }
 
