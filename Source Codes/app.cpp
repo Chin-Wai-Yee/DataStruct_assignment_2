@@ -14,8 +14,8 @@ int menu();
 int main() {
 
 	int choice = 0;
-	BST * root = new BST();
-	if (!readFile("student.txt", root)) {
+	BST t1;
+	if (!readFile("student.txt", &t1)) {
 		cout << "Cannot open file student.txt\n";
 		return 1;
 	}
@@ -27,7 +27,32 @@ int main() {
 	// 	system("pause");
 	// }
 
-	root->printLevelNodes();
+	// t1.printLevelNodes();
+
+	// test clone function
+	BST t2;
+	BST t3;
+	Student stu;
+	stu.id = 28; // take the root node for example
+	t2.CloneSubtree(t1, stu);
+
+	cout << "t1:" << endl;
+	t1.printLevelNodes();
+	cout << "t2:" << endl;
+	t2.printLevelNodes();
+
+	// modify t1:
+	Student stu2;
+	stu2.id = 1;
+	t1.insert(stu2);
+
+	// check if t2 is affected
+	cout << "t1:" << endl;
+	t1.printLevelNodes();
+	cout << "t2:" << endl;
+	t2.printLevelNodes();
+
+	t1.printPath();
 
 	return 0;
 }

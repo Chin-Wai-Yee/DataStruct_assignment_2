@@ -56,6 +56,7 @@ struct BST {
 		// extra functions
 		void ascendingPrint(BTNode *, ostream &);
 		void descendingPrint(BTNode *, ostream &);
+		void cloneSubtreeHelper(BTNode *);
 };
 
 

@@ -340,3 +340,57 @@ bool BST::printLevelNodes() {
 
     return true;
 }
+
+// Function to clone a subtree in t1 where the root of the subtree contains value item
+bool BST::CloneSubtree(BST t1, type item) {
+    if (t1.root == nullptr) {
+        // t1 is empty, return false
+        std::cout << "Cannot clone subtree: Tree t1 is empty." << std::endl;
+        return false;
+    }
+
+    BTNode* targetNode = nullptr;
+    // Search for the node with the specified item in t1
+    BTNode* current = t1.root;
+    while (current != nullptr) {
+        if (item.id == current->item.id) {
+			targetNode = current;
+            break;
+        } else if (item.id < current->item.id) {
+            current = current->left;
+        } else {
+            current = current->right;
+        }
+    }
+
+    if (targetNode == nullptr) {
+        // Item not found in t1, return false
+        std::cout << "Cannot clone subtree: Item " << item.id << " not found in t1." << std::endl;
+        return false;
+    }
+
+    // Clone the subtree rooted at targetNode into t2 (current tree)
+    this->cloneSubtreeHelper(targetNode);
+
+    // Print t1 and t2 using preOrderPrint after cloning
+    // std::cout << "Original Tree (t1):" << std::endl;
+    // t1.preOrderPrint();
+    // std::cout << "Cloned Subtree (t2):" << std::endl;
+    // this->preOrderPrint();
+
+    return true;
+}
+
+// Helper function to recursively clone a subtree rooted at a given node
+void BST::cloneSubtreeHelper(BTNode* currentNode) {
+    if (currentNode == nullptr) {
+        return;
+    }
+
+    // Create a new node with the same data
+    this->insert(currentNode->item);
+    
+    // Recursively clone the left and right subtrees
+    cloneSubtreeHelper(currentNode->left);
+    cloneSubtreeHelper(currentNode->right);
+}
