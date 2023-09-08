@@ -283,6 +283,7 @@ bool BST::display(int order, int source) {
 			descendingPrint(this->root, out);
 		}
 	}
+	return true;
 }
 
 void BST::ascendingPrint(BTNode *cur, ostream &out) {
@@ -393,4 +394,55 @@ void BST::cloneSubtreeHelper(BTNode* currentNode) {
     // Recursively clone the left and right subtrees
     cloneSubtreeHelper(currentNode->left);
     cloneSubtreeHelper(currentNode->right);
+}
+
+bool BST::deepestNodes()// print deepest nodes
+{
+	int count = 0;
+
+	if (root == NULL) {
+		cout << "The tree is empty." << endl;
+		return false;
+	}
+	else
+	{
+		count = MaxDepth(root);
+		cout << "The deepest node is: ";
+		deepestNodes2(root, count);
+		cout << endl;
+		return true;
+	}
+}
+
+void BST::deepestNodes2(BTNode *cur, int count) 
+{
+
+	if (cur == NULL) {
+		return;
+	}
+	if (count == 1) {
+
+		cout << cur->item.id << " ";
+	}
+	//searching for he deepest nodes
+	deepestNodes2(cur->left, count - 1);
+	deepestNodes2(cur->right, count - 1);
+}
+
+int BST::MaxDepth(BTNode* cur) //check for the maximum depth
+{
+	int LeftDepth, RightDepth;
+
+	if (cur == NULL)
+		return 0;
+	else
+	{
+		LeftDepth = MaxDepth(cur->left);
+		RightDepth = MaxDepth(cur->right);
+		if (LeftDepth > RightDepth)
+			return (LeftDepth + 1);
+		else
+			return (RightDepth + 1);
+
+	}
 }

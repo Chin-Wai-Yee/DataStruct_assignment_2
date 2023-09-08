@@ -52,7 +52,7 @@ int main() {
 	cout << "t2:" << endl;
 	t2.printLevelNodes();
 
-	t1.printPath();
+	t1.deepestNodes();
 
 	return 0;
 }

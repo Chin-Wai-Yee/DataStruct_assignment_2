@@ -57,6 +57,9 @@ struct BST {
 		void ascendingPrint(BTNode *, ostream &);
 		void descendingPrint(BTNode *, ostream &);
 		void cloneSubtreeHelper(BTNode *);
+		void deepestNodes2(BTNode *, int);
+		int MaxDepth(BTNode *);
+
 };
 
 
