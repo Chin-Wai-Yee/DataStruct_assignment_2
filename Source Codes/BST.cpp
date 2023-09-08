@@ -285,6 +285,7 @@ bool BST::display(int order, int source) {
 		else {
 			descendingPrint(this->root, out);
 		}
+		cout << "The tree has been printed to student-info.txt" << endl;
 	}
 	return true;
 }
@@ -375,12 +376,6 @@ bool BST::CloneSubtree(BST t1, type item) {
 
     // Clone the subtree rooted at targetNode into t2 (current tree)
     this->cloneSubtreeHelper(targetNode);
-
-    // Print t1 and t2 using preOrderPrint after cloning
-    std::cout << "Original Tree (t1):" << std::endl;
-    t1.preOrderPrint();
-    std::cout << "Cloned Subtree (t2):" << std::endl;
-    this->preOrderPrint();
 
     return true;
 }

@@ -18,11 +18,12 @@ int main() {
 	while (choice != 7) {
 		system("cls");
 		choice = menu();
+		cout << "\n==========================================\n";
 		switch (choice)
 		{
 		case 1:
 		{
-			!readFile("student.txt", &t1);
+			readFile("student.txt", &t1);
 			break;
 		}
 		case 2:
@@ -51,9 +52,16 @@ int main() {
 		{
 			BST t2;
 			Student stu;
-			cout << "Enter student id to clone: ";
+			cout << "Enter student id to clone subtree\n";
+			cout << ">> ";
 			cin >> stu.id;
 			t2.CloneSubtree(t1, stu);
+			// Print t1 and t2 using preOrderPrint after cloning
+			std::cout << "Original Tree (t1):" << std::endl;
+			t1.preOrderPrint();
+			cout << "==========================================\n";
+			std::cout << "Cloned Subtree (t2):" << std::endl;
+			t2.preOrderPrint();
 			break;
 		}
 		case 5:
@@ -130,14 +138,12 @@ bool readFile(const char * filename, BST * t1) {
 
 	input_file.close(); // close file
 	cout << "Read " << stu_num << " students from file.\n";
-
-	t1->printPath();
-
+	
 	return true;
 }
 
 int menu() {
-	cout << "------------------MENU------------------\n";
+	cout << "------------------ MENU ------------------\n";
 	cout << "1. Read data to BST\n";
 	cout << "2. Print deepest nodes\n";
 	cout << "3. Display student\n";
@@ -145,8 +151,9 @@ int menu() {
 	cout << "5. Print Level Nodes\n";
 	cout << "6. Print Path\n";
 	cout << "7. Exit\n";
-	cout << "----------------------------------------\n";
-	cout << "Enter your choice: ";
+	cout << "------------------------------------------\n";
+	cout << "Enter your choice\n";
+	cout << ">> ";
 	int choice;
 	cin >> choice;
 	return choice;
