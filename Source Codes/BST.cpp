@@ -370,7 +370,7 @@ bool BST::CloneSubtree(BST t1, type item) {
 
     if (targetNode == nullptr) {
         // Item not found in t1, return false
-        std::cout << "Cannot clone subtree: Item " << item.id << " not found in t1." << std::endl;
+        std::cout << "Cannot clone subtree: Student ID " << item.id << " not found in t1." << std::endl;
         return false;
     }
 

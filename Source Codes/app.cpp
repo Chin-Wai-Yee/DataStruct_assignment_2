@@ -55,7 +55,9 @@ int main() {
 			cout << "Enter student id to clone subtree\n";
 			cout << ">> ";
 			cin >> stu.id;
-			t2.CloneSubtree(t1, stu);
+			if(!t2.CloneSubtree(t1, stu)) {
+				break;
+			}
 			// Print t1 and t2 using preOrderPrint after cloning
 			std::cout << "Original Tree (t1):" << std::endl;
 			t1.preOrderPrint();
