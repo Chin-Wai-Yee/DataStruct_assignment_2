@@ -54,6 +54,8 @@ int main() {
 
 	t1.deepestNodes();
 
+	t1.printPath();
+
 	return 0;
 }
 
@@ -111,6 +113,8 @@ bool readFile(const char * filename, BST * t1) {
 
 	input_file.close(); // close file
 	cout << "Read " << stu_num << " students from file.\n";
+
+	t1->printPath();
 
 	return true;
 }

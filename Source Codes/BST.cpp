@@ -446,3 +446,38 @@ int BST::MaxDepth(BTNode* cur) //check for the maximum depth
 
 	}
 }
+
+#include <string>
+
+bool BST::printPath() {
+    if (empty()) {
+        cout << "The tree is empty." << endl;
+        return false;
+    }
+
+    cout << "Below are all the external paths for the tree:" << endl;
+
+    printExternalPaths(root, ""); // Call the helper function
+
+    return true;
+}
+
+// Helper function to print external paths recursively
+void BST::printExternalPaths (BTNode* node, string path) {
+	if (node == nullptr) {
+		return;
+	}
+
+	// Append the current node's ID to the path
+	path += to_string(node->item.id) + " ";
+
+	// If it's a leaf node (external node), print the path
+	if (node->left == nullptr && node->right == nullptr) {
+		cout << path << endl;
+		return;
+	}
+
+	// Continue traversing the left and right subtrees
+	printExternalPaths(node->left, path);
+	printExternalPaths(node->right, path);
+};

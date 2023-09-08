@@ -59,7 +59,7 @@ struct BST {
 		void cloneSubtreeHelper(BTNode *);
 		void deepestNodes2(BTNode *, int);
 		int MaxDepth(BTNode *);
-
+		void printExternalPaths(BTNode *, string);
 };
 
 
