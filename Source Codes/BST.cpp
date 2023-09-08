@@ -260,9 +260,12 @@ void BST::case3(BTNode *cur) {
 }
 
 bool BST::display(int order, int source) {
-	if (this->empty()) return false;
+	if (this->empty()) {
+		cout << "The tree is empty." << endl;
+		return false;
+	}
 
-	if (source == 1) {
+	if (source == 1) { // console
 		if (order == 1) {
 			ascendingPrint(this->root, cout);
 		}
@@ -270,7 +273,7 @@ bool BST::display(int order, int source) {
 			descendingPrint(this->root, cout);
 		}
 	}
-	else {
+	else { // file
 		ofstream out("student-info.txt");
 		if (!out) {
 			cout << "Cannot open file student-info.txt" << endl;
@@ -374,10 +377,10 @@ bool BST::CloneSubtree(BST t1, type item) {
     this->cloneSubtreeHelper(targetNode);
 
     // Print t1 and t2 using preOrderPrint after cloning
-    // std::cout << "Original Tree (t1):" << std::endl;
-    // t1.preOrderPrint();
-    // std::cout << "Cloned Subtree (t2):" << std::endl;
-    // this->preOrderPrint();
+    std::cout << "Original Tree (t1):" << std::endl;
+    t1.preOrderPrint();
+    std::cout << "Cloned Subtree (t2):" << std::endl;
+    this->preOrderPrint();
 
     return true;
 }

@@ -13,48 +13,72 @@ int menu();
 
 int main() {
 
-	int choice = 0;
 	BST t1;
-	if (!readFile("student.txt", &t1)) {
-		cout << "Cannot open file student.txt\n";
-		return 1;
+	int choice = 0;
+	while (choice != 7) {
+		system("cls");
+		choice = menu();
+		switch (choice)
+		{
+		case 1:
+		{
+			!readFile("student.txt", &t1);
+			break;
+		}
+		case 2:
+		{
+			t1.deepestNodes();
+			break;
+		}
+		case 3:
+		{
+			cout << "Please select the order to display student:\n";
+			cout << "1. Ascending order\n";
+			cout << "2. Descending order\n";
+			cout << ">> ";
+			int order;
+			cin >> order;
+			cout << "Please select the output stream:\n";
+			cout << "1. Console\n";
+			cout << "2. File\n";
+			cout << ">> ";
+			int stream;
+			cin >> stream;
+			t1.display(order, stream);
+			break;
+		}
+		case 4:
+		{
+			BST t2;
+			Student stu;
+			cout << "Enter student id to clone: ";
+			cin >> stu.id;
+			t2.CloneSubtree(t1, stu);
+			break;
+		}
+		case 5:
+		{
+			t1.printLevelNodes();
+			break;
+		}
+		case 6:
+		{
+			t1.printPath();
+			break;
+		}
+		case 7:
+		{
+			cout << "Exiting...\n";
+			break;
+		}
+		default:
+		{
+			cout << "Invalid choice\n";
+			break;
+		}
+		}
+		system("pause");
 	}
-
-	// while (choice != 7) {
-	// 	system("cls");
-	// 	choice = menu();
-	// 	cout << "\n";
-	// 	system("pause");
-	// }
-
-	// t1.printLevelNodes();
-
-	// test clone function
-	BST t2;
-	BST t3;
-	Student stu;
-	stu.id = 28; // take the root node for example
-	t2.CloneSubtree(t1, stu);
-
-	cout << "t1:" << endl;
-	t1.printLevelNodes();
-	cout << "t2:" << endl;
-	t2.printLevelNodes();
-
-	// modify t1:
-	Student stu2;
-	stu2.id = 1;
-	t1.insert(stu2);
-
-	// check if t2 is affected
-	cout << "t1:" << endl;
-	t1.printLevelNodes();
-	cout << "t2:" << endl;
-	t2.printLevelNodes();
-
-	t1.deepestNodes();
-
-	t1.printPath();
 
 	return 0;
 }
@@ -63,6 +87,7 @@ bool readFile(const char * filename, BST * t1) {
 	ifstream input_file (filename); // open file
 
 	if (!input_file) { // fail to open
+		cout << "Cannot open file " << filename << endl;
 		return false;
 	}
 
@@ -70,14 +95,6 @@ bool readFile(const char * filename, BST * t1) {
 
 	Student student;
 	string dummy;
-	// file format:
-	// Student Id = 28
-	// Name = Matt Damon
-	// Address = 465 Ripley Boulevard, Oscar Mansion, Malaysia 7666322
-	// DOB = 10-10-1970
-	// Phone Number = 790-3233
-	// Course = CS
-	// CGPA = 3.12076
 	while (!input_file.eof()) {
 		// read student info
 		// student id
